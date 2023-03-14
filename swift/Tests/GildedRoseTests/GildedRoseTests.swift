@@ -50,4 +50,10 @@ class GildedRoseTests: XCTestCase {
 
         XCTAssertGreaterThanOrEqual(items.first!.quality, 0)
     }
+
+    func testAgedBrieIncreasingQuality() throws {
+
+
+        XCTAssertGreaterThan(<#T##expression1: Comparable##Comparable#>, <#T##expression2: Comparable##Comparable#>)
+    }
 }
