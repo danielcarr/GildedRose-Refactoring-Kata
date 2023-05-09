@@ -52,8 +52,14 @@ class GildedRoseTests: XCTestCase {
     }
 
     func testAgedBrieIncreasingQuality() throws {
+        let startingSellIn = 10
+        var startingQuality = 5
+ 
+        let items = [Item(name: "Aged Brie", sellIn: startingSellIn, quality: startingQuality)]
+        let app = GildedRose(items: items)
+        app.updateQuality()
 
-
-        XCTAssertGreaterThan(<#T##expression1: Comparable##Comparable#>, <#T##expression2: Comparable##Comparable#>)
+        let agedBrie = items.first!
+        XCTAssertGreaterThan(agedBrie.quality, startingQuality)
     }
 }
