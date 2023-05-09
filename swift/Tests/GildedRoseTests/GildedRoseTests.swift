@@ -53,7 +53,7 @@ class GildedRoseTests: XCTestCase {
 
     func testAgedBrieIncreasingQuality() throws {
         let startingSellIn = 10
-        var startingQuality = 5
+        let startingQuality = 5
  
         let items = [Item(name: "Aged Brie", sellIn: startingSellIn, quality: startingQuality)]
         let app = GildedRose(items: items)
@@ -61,5 +61,32 @@ class GildedRoseTests: XCTestCase {
 
         let agedBrie = items.first!
         XCTAssertGreaterThan(agedBrie.quality, startingQuality)
+    }
+
+    func testQualityIsLessThanFifty() throws {
+        let startingSellIn = 10
+        let startingQuality = 50
+ 
+        let items = [Item(name: "Aged Brie", sellIn: startingSellIn, quality: startingQuality)]
+        let app = GildedRose(items: items)
+        app.updateQuality()
+
+        let agedBrie = items.first!
+
+        XCTAssertLessThan(agedBrie.quality, 51)
+    }
+
+    func testSulfurasWasNeverSold() throws {
+        let startingSellIn = 10
+        let startingQuality = 10
+ 
+        let items = [Item(name: "Sulfuras, Hand of Ragnaros", sellIn: startingSellIn, quality: startingQuality)]
+        let app = GildedRose(items: items)
+        app.updateQuality()
+
+        let sulfuras = items.first!
+
+        XCTAssertEqual(sulfuras.sellIn, startingSellIn)
+        XCTAssertEqual(sulfuras.quality, startingQuality)
     }
 }
