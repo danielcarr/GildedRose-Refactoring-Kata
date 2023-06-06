@@ -89,4 +89,18 @@ class GildedRoseTests: XCTestCase {
         XCTAssertEqual(sulfuras.sellIn, startingSellIn)
         XCTAssertEqual(sulfuras.quality, startingQuality)
     }
+
+    func testBackStagePassesIncreases() throws {
+        // Quality increases by 2 when there are 10 days or less
+        let startingSellIn = 10
+        let startingQuality = 5
+ 
+        let items = [Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: startingSellIn, quality: startingQuality)]
+
+        let app = GildedRose(items: items)
+        app.updateQuality()
+
+        let backstagePasses = items.first!
+        XCTAssertEqual(backstagePasses.quality, startingQuality + 2)
+    }
 }
